@@ -14,7 +14,7 @@ import { checkUser } from "@/lib/checkUser";
 const Header = async () => {
   await checkUser();
   return (
-    <div className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
+    <div className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b">
       <nav className="container mx-auto px-4 py-3.5  flex items-center justify-between">
         <Link href="/">
           <Image
@@ -22,10 +22,10 @@ const Header = async () => {
             alt="Logo"
             height={30}
             width={200}
-            className="h-12 w-auto object-contain"
+            className="h-12 w-auto object-contain "
           />
         </Link>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 ">
           <SignedIn>
             <Link
               href={"/dashboard"}

@@ -117,13 +117,13 @@ export default function Home() {
         </div>
       </section>
       <section className="py-10 md:py-20 flex items-center justify-center">
-        <div className="max-w-7xl mx-5 flex flex-col md:flex-row items-center justify-between text-left bg-gradient-to-b from-[#001F3F] via-[#003F66] to-[#00B8D9] rounded-2xl p-6 md:p-10 text-white shadow-xl">
+        <div className="max-w-7xl mx-5 flex flex-col md:flex-row items-center justify-between text-left bg-gradient-to-b from-[#001F3F] via-[#003F66] to-[#00B8D9] rounded-2xl p-6 md:p-10 text-white shadow-xl animate-gradient">
           {/* Text content */}
           <div className="w-full md:w-1/2 text-center md:text-left mb-6 md:mb-0">
             <h2 className="text-xl md:text-[46px] md:leading-[60px] font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-[#E0F7FF]">
               Ready to take control of your Finances?
             </h2>
-            <p className="mt-4 text-lg bg-gradient-to-r from-[#E0F7FF] to-[#80E9FF] text-transparent bg-clip-text">
+            <p className="mt-4 text-lg bg-gradient-to-r from-[#E0F7FF] to-[#80E9FF] text-transparent bg-clip-text ">
               Join thousands of users who are already managing their finances
               smarter with Welth
             </p>
