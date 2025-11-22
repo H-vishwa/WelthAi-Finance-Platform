@@ -82,7 +82,7 @@ const AccountChart = ({ transactions }) => {
     <Card>
       <CardHeader
         className={"flex flex-row items-center justify-between space-y-0 pb-5"}>
-        <CardTitle className={"text-base font-normal"}>
+        <CardTitle className={"text-base font-semibold"}>
           Transaction Overview
         </CardTitle>
         <Select defaultValue={dateRange} onValueChange={setDateRange}>
@@ -101,20 +101,20 @@ const AccountChart = ({ transactions }) => {
         </Select>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-around mb-3 text-sm">
-          <div className="text-center">
+        <div className="flex flex-col md:flex-row gap-3 justify-around mb-5 text-sm">
+          <div className="ml-3 md:text-center">
             <p className="text-muted-foreground">Total Income</p>
             <p className="text-lg font-bold text-green-500">
               ₹{totals.income.toFixed(2)}
             </p>
           </div>
-          <div className="text-center">
+          <div className="ml-3 md:text-center">
             <p className="text-muted-foreground">Total Expenses</p>
             <p className="text-lg font-bold text-red-500">
               ₹{totals.expense.toFixed(2)}
             </p>
           </div>
-          <div className="text-center">
+          <div className="ml-3 md:text-center">
             <p className="text-muted-foreground">Net</p>
             <p
               className={`text-lg font-bold ${
@@ -126,7 +126,7 @@ const AccountChart = ({ transactions }) => {
             </p>
           </div>
         </div>
-        <div className="h-[300px]">
+        <div className="h-[200px] md:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               className="w-full h-[250px]"

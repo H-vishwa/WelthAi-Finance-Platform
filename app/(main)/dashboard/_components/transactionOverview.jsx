@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -16,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { format } from "date-fns/format";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Cell,
   Legend,
@@ -40,6 +35,28 @@ const DashboardOverview = ({ accounts, transactions }) => {
   const [selectedAccountId, setSelectedAccountId] = useState(
     accounts.find((a) => a.isDefault)?.id || accounts[0]?.id
   );
+  const [chartDimensions, setChartDimensions] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 1200,
+    outerRadius: 80,
+    showLabels: true,
+    height: 300,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setChartDimensions({
+        width,
+        outerRadius: width < 480 ? 50 : width < 768 ? 60 : 80,
+        showLabels: width >= 768,
+        height: width < 480 ? 250 : width < 768 ? 280 : 300,
+      });
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const accountTransactions = transactions.filter(
     (tx) => tx.accountId === selectedAccountId
@@ -77,6 +94,28 @@ const DashboardOverview = ({ accounts, transactions }) => {
     })
   );
 
+  const customLabel = ({ cx, cy, midAngle, outerRadius, name, value }) => {
+    if (!chartDimensions.showLabels) return null;
+
+    const RADIAN = Math.PI / 180;
+    const radius = outerRadius + 25;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="hsl(var(--foreground))"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+        className="text-xs font-medium">
+        {`${capitalizedName}: ₹${value.toFixed(2)}`}
+      </text>
+    );
+  };
+
   return (
     <div className="grid gap-4 md:grid-cols-2">
       <Card>
@@ -107,7 +146,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {recentTransactions.lenght === 0 ? (
+            {recentTransactions.length === 0 ? (
               <p className="text-center text-muted-foreground py-4">
                 No Recent Transactions
               </p>
@@ -138,7 +177,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
                         ) : (
                           <ArrowUpRight className="mr-1 h-4 w-4" />
                         )}
-                        ${transaction.amount.toFixed(2)}
+                        ₹{transaction.amount.toFixed(2)}
                       </div>
                     </div>
                   </div>
@@ -161,38 +200,76 @@ const DashboardOverview = ({ accounts, transactions }) => {
               No expenses this month
             </p>
           ) : (
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={pieChartData}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                    label={({ name, value }) =>
-                      `${name}: ₹${value.toFixed(2)}`
-                    }>
-                    {pieChartData.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    formatter={(value) => `₹${value.toFixed(2)}`}
-                    contentStyle={{
-                      backgroundColor: "hsl(var(--popover))",
-                      border: "1px solid hsl(var(--border))",
-                      borderRadius: "var(--radius)",
-                    }}
-                  />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+            <>
+              <div style={{ height: `${chartDimensions.height}px` }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={pieChartData}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={chartDimensions.outerRadius}
+                      fill="#8884d8"
+                      dataKey="value"
+                      label={chartDimensions.showLabels ? customLabel : false}
+                      labelLine={chartDimensions.showLabels}>
+                      {pieChartData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value) => `₹${value.toFixed(2)}`}
+                      contentStyle={{
+                        backgroundColor: "hsl(var(--popover))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "var(--radius)",
+                      }}
+                    />
+                    <Legend
+                      wrapperStyle={{
+                        fontSize: chartDimensions.width < 480 ? "11px" : "12px",
+                        paddingTop: "10px",
+                      }}
+                      iconType="circle"
+                      iconSize={8}
+                      formatter={(value) =>
+                        value.charAt(0).toUpperCase() + value.slice(1)
+                      }
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Mobile Summary Cards */}
+              {chartDimensions.width < 768 && (
+                <div className="px-6 mt-4 space-y-2">
+                  {pieChartData.map((item, index) => (
+                    <div
+                      key={item.name}
+                      className="flex items-center justify-between py-2 border-b last:border-0">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="w-3 h-3 rounded-full"
+                          style={{
+                            backgroundColor: COLORS[index % COLORS.length],
+                          }}
+                        />
+                        <span className="text-sm font-medium">
+                          {item.name.charAt(0).toUpperCase() +
+                            item.name.slice(1)}
+                        </span>
+                      </div>
+                      <span className="text-sm font-semibold">
+                        ₹{item.value.toFixed(2)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </CardContent>
       </Card>

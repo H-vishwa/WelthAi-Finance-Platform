@@ -74,7 +74,7 @@ const AccountDrawer = ({ children }) => {
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
-      <DrawerContent className={"mx-50"}>
+      <DrawerContent className={"mx-2 md:mx-50"}>
         <DrawerHeader>
           <DrawerTitle>Create New Account</DrawerTitle>
         </DrawerHeader>

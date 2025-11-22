@@ -146,7 +146,7 @@ const TransactionForm = ({
                   value={account.id}
                   key={account.id}
                   className={"cursor-pointer"}>
-                  {account.name}(${parseFloat(account.balance).toFixed(2)})
+                  {account.name}(₹{parseFloat(account.balance).toFixed(2)})
                 </SelectItem>
               ))}
               <AccountDrawer>

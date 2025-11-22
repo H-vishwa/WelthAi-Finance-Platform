@@ -86,7 +86,7 @@ export const howItWorksData = [
 ];
 
 // Testimonials Data
-export const testimonialsData = [
+export const  testimonialsData = [
   {
     name: "Sarah Johnson",
     role: "Small Business Owner",

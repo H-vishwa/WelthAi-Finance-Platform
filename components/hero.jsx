@@ -36,7 +36,7 @@ const HeroSection = () => {
           An AI-Powered financial platform that helps you track, analyze, and
           optimize your expenses with real-time insights.
         </p>
-        <div className="flex justify-center space-x-4 ">
+        <div className="flex justify-center space-x-4 mb-5">
           <Link href="/dashboard">
             <Button size="lg" className={"px-8"}>
               Get Started
