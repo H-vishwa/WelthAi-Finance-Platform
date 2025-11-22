@@ -95,6 +95,7 @@ export default function Home() {
                       width={60}
                       height={60}
                       className="rounded-full"
+                      unoptimized
                     />
                     <div className="ml-4">
                       <div className="font-semibold text-gray-900">
