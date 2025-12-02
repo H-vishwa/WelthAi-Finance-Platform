@@ -1,6 +1,6 @@
 # WelthAi Finance Platform
 
-Welcome to **WelthAi Finance Platform** – an intelligent, extensible finance platform designed to empower individuals, investors, and enterprises with insightful tools, comprehensive analytics, and seamless financial planning.
+Welcome to **WelthAi Finance Platform** – an intelligent, extensible finance platform designed to empower individuals, investors, and enterprises with insightful tools, comprehensive analytics, and [...]
 
 ---
 
@@ -19,11 +19,13 @@ Welcome to **WelthAi Finance Platform** – an intelligent, extensible finance p
 
 > _The actual tech stack may vary. Please update as per your project stack._
 
-- **Backend**: Python / Node.js
-- **Frontend**: React / Angular / Vue
-- **Database**: PostgreSQL / MongoDB
-- **DevOps**: Docker, GitHub Actions
-- **Hosting**: AWS / Azure / GCP
+- **Backend**: Supabase, Inngest
+- **Frontend**: React, Next.js, Shadcn UI, Recharts
+- **Authentication**: Clerk
+- **Email**: Resend
+- **Database**: Supabase (PostgreSQL)
+- **DevOps**: GitHub Actions
+- **Hosting**: Vercel
 
 ---
 
