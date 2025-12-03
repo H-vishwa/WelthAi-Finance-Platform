@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WelthAi Finance Platform
 
-## Getting Started
+Welcome to **WelthAi Finance Platform** – an intelligent, extensible finance platform designed to empower individuals, investors, and enterprises with insightful tools, comprehensive analytics, and [...]
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- **Portfolio Management**: Track investments across various asset classes.
+- **Analytics Dashboard**: Interactive charts and data visualizations.
+- **Financial Planning Tools**: Goal setting, budget tracking, and more.
+- **AI-driven Insights**: Machine learning powered recommendations.
+- **Secure Authentication**: Protect your financial data with robust security measures.
+- **API Integration**: Connect with banks, brokerages, and external services.
+
+---
+
+## 🛠 Tech Stack
+
+> _The actual tech stack may vary. Please update as per your project stack._
+
+- **Backend**: Supabase, Inngest
+- **Frontend**: React, Next.js, Shadcn UI, Recharts
+- **Authentication**: Clerk
+- **Email**: Resend
+- **Database**: Supabase (PostgreSQL)
+- **DevOps**: GitHub Actions
+- **Hosting**: Vercel
+
+---
+
+## 📦 Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone the repo
+git clone https://github.com/H-vishwa/WelthAi-Finance-Platform.git
+cd WelthAi-Finance-Platform
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+cd backend
+# Install dependencies
+pip install -r requirements.txt   # For Python
+# or
+npm install                      # For Node.js
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Run backend server
+python app.py                    # Python
+# or
+npm start                        # Node.js
+```
 
-## Learn More
+### Frontend
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd frontend
+npm install
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📈 Usage
 
-## Deploy on Vercel
+- Register for an account on the platform.
+- Link your investment accounts and bank accounts.
+- Explore analytics, set goals, and receive insights.
+- Customize dashboard widgets as per your preferences.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+---
+
+## 🛡️ License
+
+Distributed under the [MIT License](LICENSE).
+
+---
+
+## 🌐 Contact
+
+For support or collaboration, reach out via [GitHub Issues](https://github.com/H-vishwa/WelthAi-Finance-Platform/issues).
+
+---
+
+**Made with 💡 by H-vishwa and contributors**
