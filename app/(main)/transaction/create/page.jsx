@@ -6,12 +6,13 @@ import { getTransaction } from "@/actions/transaction";
 const addTransactionPage = async ({ searchParams }) => {
   const accounts = await getUserAccounts();
 
-  const editId = searchParams?.edit;
+  const { edit: editId } = await searchParams;
   let initialData = null;
   if (editId) {
     const transaction = await getTransaction(editId);
     initialData = transaction;
   }
+
 
   return (
     <div className="max-w-3xl mx-auto px-5">

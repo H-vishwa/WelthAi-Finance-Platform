@@ -101,7 +101,7 @@ const TransactionForm = ({
       toast.success(
         editMode
           ? "Transaction updated Succesfully"
-          : "Transaction created Succesfully"
+          : "Transaction created Succesfully",
       );
       reset();
       router.push(`/account/${transactionResult.data.accountId}`);
@@ -109,7 +109,7 @@ const TransactionForm = ({
   }, [transactionResult, transactionLoading, editMode]);
 
   const filteredCategories = categories.filter(
-    (category) => category.type === type
+    (category) => category.type === type,
   );
 
   const handleScanComplete = async (scannedData) => {
@@ -126,222 +126,222 @@ const TransactionForm = ({
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+    <div className="space-y-6">
       {/* AI Receipt Scanner */}
-      {!editMode &&  <ReceiptScanner onScanComplete={handleScanComplete} />
-}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Account */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Account</label>
-          <Select
-            onValueChange={(value) => setValue("accountId", value)}
-            defaultValue={getValues("accountId")}>
-            <SelectTrigger className={"cursor-pointer w-full"}>
-              <SelectValue placeholder="Select Account" />
-            </SelectTrigger>
-            <SelectContent>
-              {accounts.map((account) => (
-                <SelectItem
-                  value={account.id}
-                  key={account.id}
-                  className={"cursor-pointer"}>
-                  {account.name}(₹{parseFloat(account.balance).toFixed(2)})
-                </SelectItem>
-              ))}
-              <AccountDrawer>
+      {!editMode && <ReceiptScanner onScanComplete={handleScanComplete} />}
+
+      <div className="rounded-2xl p-6 md:p-8 border border-blue-500/10 bg-[#0d1426]/70 backdrop-blur-xl shadow-[0_4px_40px_rgba(0,0,0,0.4)] hover:border-blue-500/20 transition-all duration-300">
+        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Account */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Account</label>
+              <Select
+                onValueChange={(value) => setValue("accountId", value)}
+                defaultValue={getValues("accountId")}>
+                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                  <SelectValue placeholder="Select Account" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                  {accounts.map((account) => (
+                    <SelectItem
+                      value={account.id}
+                      key={account.id}
+                      className="cursor-pointer hover:bg-white/5 focus:bg-white/5">
+                      {account.name} (₹{parseFloat(account.balance).toFixed(2)})
+                    </SelectItem>
+                  ))}
+                  <AccountDrawer>
+                    <Button
+                      variant="ghost"
+                      className="w-full select-none items-center text-sm outline-none cursor-pointer hover:bg-white/5 text-blue-400 hover:text-blue-300">
+                      Create Account
+                    </Button>
+                  </AccountDrawer>
+                </SelectContent>
+              </Select>
+              {errors.accountId && (
+                <p className="text-sm text-red-400">{errors.accountId.message}</p>
+              )}
+            </div>
+
+            {/* Type */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Type</label>
+              <Select
+                onValueChange={(value) => setValue("type", value)}
+                defaultValue={type}>
+                <SelectTrigger className="w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                  <SelectValue placeholder="Select Type" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                  <SelectItem value="INCOME" className="cursor-pointer text-emerald-400">Income</SelectItem>
+                  <SelectItem value="EXPENSE" className="cursor-pointer text-rose-400">Expense</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.type && (
+                <p className="text-sm text-red-400">{errors.type.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Amount */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Amount</label>
+              <Input
+                type="number"
+                step="0.01"
+                min="0"
+                placeholder="0.00"
+                className="bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 pr-4"
+                {...register("amount")}
+              />
+              {errors.amount && (
+                <p className="text-sm text-red-400">{errors.amount.message}</p>
+              )}
+            </div>
+
+            {/* Category */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Category</label>
+              <Select
+                onValueChange={(value) => setValue("category", value)}
+                defaultValue={getValues("category")}>
+                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                  <SelectValue placeholder="Select Category" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                  {filteredCategories.map((category) => (
+                    <SelectItem
+                      value={category.id}
+                      key={category.id}
+                      className="cursor-pointer hover:bg-white/5 focus:bg-white/5">
+                      {category.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.category && (
+                <p className="text-sm text-red-400">{errors.category.message}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Date */}
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Date</label>
+            <Popover>
+              <PopoverTrigger className="cursor-pointer" asChild>
                 <Button
-                  variant={"ghost"}
-                  className={
-                    "w-full select-none items-center text-sm outline-none cursor-pointer"
-                  }>
-                  Create Account
+                  variant="outline"
+                  className="w-full pl-3 text-left font-normal bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 hover:bg-[#080d1a]/80 text-slate-300 hover:text-white rounded-xl h-11">
+                  {date ? format(date, "PPP") : <span className="text-slate-500">Pick a date</span>}
+                  <CalendarIcon className="ml-auto w-4 h-4 opacity-50" />
                 </Button>
-              </AccountDrawer>
-            </SelectContent>
-          </Select>
+              </PopoverTrigger>
+              <PopoverContent className="bg-[#0d1426] border-white/10 p-0 rounded-xl" align="start">
+                <Calendar
+                  className="cursor-pointer text-white"
+                  mode="single"
+                  selected={date}
+                  onSelect={(date) => setValue("date", date)}
+                  disabled={(date) =>
+                    date > new Date() || date < new Date("1900-01-01")
+                  }
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+            {errors.date && (
+              <p className="text-sm text-red-400">{errors.date.message}</p>
+            )}
+          </div>
 
-          {errors.accountId && (
-            <p className="text-sm text-red-500">{errors.accountId.message}</p>
-          )}
-        </div>
-
-        {/* Type */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Type</label>
-          <Select
-            onValueChange={(value) => setValue("type", value)}
-            defaultValue={type}>
-            <SelectTrigger className={"w-full"}>
-              <SelectValue placeholder="Select Type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="INCOME">Income</SelectItem>
-              <SelectItem value="EXPENSE">Expense</SelectItem>
-            </SelectContent>
-          </Select>
-
-          {errors.type && (
-            <p className="text-sm text-red-500">{errors.type.message}</p>
-          )}
-        </div>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Amount   */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Amount</label>
-          <Input
-            type={"number"}
-            step="0.01"
-            min="0"
-            placeholder="0.00"
-            {...register("amount")}
-          />
-          {errors.amount && (
-            <p className="text-sm text-red-500">{errors.amount.message}</p>
-          )}
-        </div>
-
-        {/* Category  */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Category</label>
-          <Select
-            onValueChange={(value) => setValue("category", value)}
-            defaultValue={getValues("category")}>
-            <SelectTrigger className={"cursor-pointer w-full"}>
-              <SelectValue placeholder="Select Category" />
-            </SelectTrigger>
-            <SelectContent>
-              {filteredCategories.map((category) => (
-                <SelectItem
-                  value={category.id}
-                  key={category.id}
-                  className={"cursor-pointer"}>
-                  {category.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          {errors.category && (
-            <p className="text-sm text-red-500">{errors.category.message}</p>
-          )}
-        </div>
-      </div>
-
-      {/* Date  */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Date</label>
-        <Popover>
-          <PopoverTrigger className="cursor-pointer" asChild>
-            <Button
-              variant={"outline"}
-              className={"w-full pl-3 text-left font-normal"}>
-              {date ? format(date, "PPP") : <span>Pick a date</span>}
-              <CalendarIcon className="ml-auto w-4 h-4 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent>
-            <Calendar
-              className={"cursor-pointer"}
-              mode="single"
-              selected={date}
-              onSelect={(date) => setValue("date", date)}
-              disabled={(date) =>
-                date > new Date() || date < new Date("1900-01-01")
-              }
-              initialFocus
+          {/* Description */}
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Description</label>
+            <Input 
+              placeholder="Enter Description" 
+              className="bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              {...register("description")} 
             />
-          </PopoverContent>
-        </Popover>
+            {errors.description && (
+              <p className="text-sm text-red-400">{errors.description.message}</p>
+            )}
+          </div>
 
-        {errors.date && (
-          <p className="text-sm text-red-500">{errors.date.message}</p>
-        )}
-      </div>
+          {/* Recurring Transaction Switch */}
+          <div className="flex items-center justify-between rounded-xl p-4 border border-blue-500/10 bg-blue-500/5">
+            <div className="space-y-1">
+              <label
+                htmlFor="isRecurring"
+                className="text-sm font-semibold text-white cursor-pointer">
+                Recurring Transaction
+              </label>
+              <p className="text-xs text-slate-400">
+                Set up recurring schedule for this transaction automatically.
+              </p>
+            </div>
+            <Switch
+              checked={isRecurring}
+              onCheckedChange={(checked) => setValue("isRecurring", checked)}
+              className="cursor-pointer"
+            />
+          </div>
 
-      {/* Description  */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Description</label>
-        <Input placeholder="Enter Description" {...register("description")} />
-        {errors.description && (
-          <p className="text-sm text-red-500">{errors.description.message}</p>
-        )}
-      </div>
-
-      {/* Recurring transaction  */}
-      <div className="flex items-center justify-between rounded-lg p-3 border">
-        <div className="space-y-0.5">
-          <label
-            htmlFor="isDefault"
-            className="text-sm font-medium cursor-pointer">
-            Recurring Transaction
-          </label>
-
-          <p className="tesxt-sm text-muted-foreground">
-            Set up Recurring schedule for this Transaction.
-          </p>
-        </div>
-        <Switch
-          checked={isRecurring}
-          onCheckedChange={(checked) => setValue("isRecurring", checked)}
-          className={"cursor-pointer"}
-        />
-      </div>
-
-      {isRecurring && (
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Recurring Interval</label>
-          <Select
-            onValueChange={(value) => setValue("recurringInterval", value)}
-            defaultValue={getValues("recurringInterval")}>
-            <SelectTrigger className={"cursor-pointer w-full"}>
-              <SelectValue placeholder="Select Interval" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="DAILY">Daily</SelectItem>
-              <SelectItem value="WEEKLY">Weekly</SelectItem>
-              <SelectItem value="MONTHLY">Monthly</SelectItem>
-              <SelectItem value="YEARLY">Yearly</SelectItem>
-            </SelectContent>
-          </Select>
-
-          {errors.recurringInterval && (
-            <p className="text-sm text-red-500">
-              {errors.recurringInterval.message}
-            </p>
+          {isRecurring && (
+            <div className="space-y-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Recurring Interval</label>
+              <Select
+                onValueChange={(value) => setValue("recurringInterval", value)}
+                defaultValue={getValues("recurringInterval")}>
+                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                  <SelectValue placeholder="Select Interval" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                  <SelectItem value="DAILY" className="cursor-pointer">Daily</SelectItem>
+                  <SelectItem value="WEEKLY" className="cursor-pointer">Weekly</SelectItem>
+                  <SelectItem value="MONTHLY" className="cursor-pointer">Monthly</SelectItem>
+                  <SelectItem value="YEARLY" className="cursor-pointer">Yearly</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.recurringInterval && (
+                <p className="text-sm text-red-400">
+                  {errors.recurringInterval.message}
+                </p>
+              )}
+            </div>
           )}
-        </div>
-      )}
 
-      {/* Submit or Cancel  */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <Button
-          type="button"
-          variant={"outline"}
-          className="cursor-pointer"
-          onClick={() => router.back()}>
-          Cancel
-        </Button>
-        <Button
-          type="submit"
-          className={"cursor-pointer"}
-          disabled={transactionLoading}>
-          {transactionLoading ? (
-            <>
-              {" "}
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {editMode ? "Updating..." : "Creating..."}
-            </>
-          ) : editMode ? (
-            "Update Transaction"
-          ) : (
-            "Create Transaction"
-          )}
-        </Button>
+          {/* Submit or Cancel */}
+          <div className="grid gap-6 md:grid-cols-2 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              className="cursor-pointer border-white/10 text-slate-300 hover:text-white hover:bg-white/5 hover:border-white/20 transition-all rounded-xl h-11"
+              onClick={() => router.back()}>
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="cursor-pointer btn-shimmer gap-2 text-sm font-bold h-11 rounded-xl border-0 bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow-[0_0_20px_rgba(59,130,246,0.35)] hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] transition-all duration-300"
+              disabled={transactionLoading}>
+              {transactionLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {editMode ? "Updating..." : "Creating..."}
+                </>
+              ) : editMode ? (
+                "Update Transaction"
+              ) : (
+                "Create Transaction"
+              )}
+            </Button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 };
 

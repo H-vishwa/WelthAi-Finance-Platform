@@ -48,21 +48,17 @@ const ReceiptScanner = ({ onScanComplete }) => {
 
       <Button
         type="button"
-        variant={"outline"}
-        className={
-          "w-full h-10 bg-gradient-to-r from-[#2dd4bf]  to-[#1f2937] animate-gradient hover:opacity-95 transition-opacity text-white hover:text-gray-50 cursor-pointer"
-        }
+        className="w-full h-11 cursor-pointer btn-shimmer gap-2 text-sm font-semibold rounded-xl border-0 bg-gradient-to-r from-teal-500 to-emerald-400 text-white shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_35px_rgba(20,184,166,0.5)] transition-all duration-300"
         onClick={() => fileInputRef.current?.click()}
         disabled={scanReceiptLoading}>
         {scanReceiptLoading ? (
           <div className="flex items-center justify-center">
-            {""}
-            <Loader2 className="mr-2 animate-spin" />
-            <span>Scannig Receipt...</span>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <span>Scanning Receipt with AI...</span>
           </div>
         ) : (
           <div className="flex items-center justify-center">
-            <Camera className="mr-2" />
+            <Camera className="mr-2 h-4 w-4" />
             <span>Scan Receipt with AI</span>
           </div>
         )}

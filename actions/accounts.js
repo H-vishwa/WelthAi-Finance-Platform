@@ -18,11 +18,11 @@ const serializeTransaction = (transaction) => {
 
 export async function updateDefaultAccount(accountId) {
   try {
-    const userId = await auth();
+    const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
     const user = await db.user.findUnique({
-      where: { clerkUserId: userId.userId },
+      where: { clerkUserId: userId },
     });
     if (!user) throw new Error("User does not exist");
 
@@ -47,11 +47,11 @@ export async function updateDefaultAccount(accountId) {
 }
 
 export async function getAccountsWithTransactions(accountId) {
-  const userId = await auth();
+  const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
   const user = await db.user.findUnique({
-    where: { clerkUserId: userId.userId },
+    where: { clerkUserId: userId },
   });
   if (!user) throw new Error("User does not exist");
 
@@ -80,11 +80,11 @@ export async function getAccountsWithTransactions(accountId) {
 
 export async function bulkDeleteTransaction(transactionsIds) {
   try {
-    const userId = await auth();
+    const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
     const user = await db.user.findUnique({
-      where: { clerkUserId: userId.userId },
+      where: { clerkUserId: userId },
     });
     if (!user) throw new Error("User does not exist");
 

@@ -105,6 +105,9 @@ function calculateNextRecurringDate(startDate, interval) {
 
 export async function scanReceipt(file) {
   try {
+    const { userId } = await auth();
+    if (!userId) throw new Error("Unauthorized");
+
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     // Convert File to ArrayBuffer

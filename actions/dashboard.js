@@ -18,11 +18,11 @@ const serializeTransaction = (transaction) => {
 
 export async function createAccount(data) {
   try {
-    const userId = await auth();
+    const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
     const user = await db.user.findUnique({
-      where: { clerkUserId: userId.userId },
+      where: { clerkUserId: userId },
     });
     if (!user) throw new Error("User does not exist");
 
@@ -68,11 +68,11 @@ export async function createAccount(data) {
 }
 
 export async function getUserAccounts() {
-  const userId = await auth();
+  const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
   const user = await db.user.findUnique({
-    where: { clerkUserId: userId.userId },
+    where: { clerkUserId: userId },
   });
   if (!user) throw new Error("User does not exist");
 
@@ -92,11 +92,11 @@ export async function getUserAccounts() {
 }
 
 export async function getDashboardData() {
-  const userId = await auth();
+  const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
   const user = await db.user.findUnique({
-    where: { clerkUserId: userId.userId },
+    where: { clerkUserId: userId },
   });
   if (!user) throw new Error("User does not exist");
 

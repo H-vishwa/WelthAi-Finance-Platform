@@ -107,10 +107,10 @@ const DashboardOverview = ({ accounts, transactions }) => {
       <text
         x={x}
         y={y}
-        fill="hsl(var(--foreground))"
+        fill="var(--foreground)"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
-        className="text-xs font-medium">
+        className="text-xs font-semibold">
         {`${capitalizedName}: ₹${value.toFixed(2)}`}
       </text>
     );
@@ -223,10 +223,12 @@ const DashboardOverview = ({ accounts, transactions }) => {
                     <Tooltip
                       formatter={(value) => `₹${value.toFixed(2)}`}
                       contentStyle={{
-                        backgroundColor: "hsl(var(--popover))",
-                        border: "1px solid hsl(var(--border))",
+                        backgroundColor: "var(--popover)",
+                        border: "1px solid var(--border)",
                         borderRadius: "var(--radius)",
                       }}
+                      itemStyle={{ color: "var(--foreground)" }}
+                      labelStyle={{ color: "var(--muted-foreground)" }}
                     />
                     <Legend
                       wrapperStyle={{
@@ -235,9 +237,11 @@ const DashboardOverview = ({ accounts, transactions }) => {
                       }}
                       iconType="circle"
                       iconSize={8}
-                      formatter={(value) =>
-                        value.charAt(0).toUpperCase() + value.slice(1)
-                      }
+                      formatter={(value) => (
+                        <span className="text-slate-300 font-medium">
+                          {value.charAt(0).toUpperCase() + value.slice(1)}
+                        </span>
+                      )}
                     />
                   </PieChart>
                 </ResponsiveContainer>

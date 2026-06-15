@@ -8,6 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 import { endOfDay } from "date-fns/endOfDay";
 import { format } from "date-fns/format";
 import { startOfDay } from "date-fns/startOfDay";
@@ -126,43 +129,72 @@ const AccountChart = ({ transactions }) => {
             </p>
           </div>
         </div>
-        <div className="h-[200px] md:h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              className="w-full h-[250px]"
-              data={filteredData}
-              margin={{
-                top: 5,
-                right: 5,
-                left: 5,
-                bottom: 0,
-              }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="date" />
-              <YAxis
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                tickFormatter={(value) => `₹${value}`}
+        {filteredData.length === 0 ? (
+          <div className="h-[200px] md:h-[300px] flex flex-col items-center justify-center border border-dashed border-blue-500/10 rounded-2xl bg-[#0b1224]/30 backdrop-blur-md px-6 text-center">
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-blue-500/10 border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
+              <Plus size={20} className="text-blue-400" />
+            </div>
+            <p className="text-slate-300 font-semibold text-sm">No transactions found</p>
+            <p className="text-slate-500 text-xs mt-1 max-w-[280px]">
+              We couldn't find any transactions for the selected time range. Add one to see your breakdown.
+            </p>
+            <Link href="/transaction/create" className="mt-4">
+              <Button
+                size="sm"
+                className="cursor-pointer btn-shimmer gap-1.5 text-xs font-semibold py-2 px-4 rounded-xl border-0 bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_35px_rgba(59,130,246,0.5)] transition-all duration-300"
+              >
+                Add Transaction
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="h-[200px] md:h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                className="w-full h-[250px]"
+                data={filteredData}
+                margin={{
+                  top: 5,
+                  right: 5,
+                  left: 5,
+                  bottom: 0,
+                }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="date" />
+                <YAxis
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(value) => `₹${value}`}
+                />
+                <Tooltip
+                formatter={(value) => [`₹${value}`, undefined]}
+                contentStyle={{
+                  backgroundColor: "var(--popover)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "var(--radius)",
+                }}
+                itemStyle={{ color: "var(--foreground)" }}
+                labelStyle={{ color: "var(--muted-foreground)" }}
               />
-              <Tooltip formatter={(value) => [`₹${value}`, undefined]} />
-              <Legend />
-              <ReferenceLine y={0} stroke="#000" />
-              <Bar
-                dataKey="income"
-                name={"Income"}
-                fill="#22c55e"
-                radius={[4, 4, 0, 0]}
-              />
-              <Bar
-                dataKey="expense"
-                name={"Expense"}
-                fill="#ef4444"
-                radius={[4, 4, 0, 0]}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+                <Legend />
+                <ReferenceLine y={0} stroke="#000" />
+                <Bar
+                  dataKey="income"
+                  name={"Income"}
+                  fill="#22c55e"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="expense"
+                  name={"Expense"}
+                  fill="#ef4444"
+                  radius={[4, 4, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

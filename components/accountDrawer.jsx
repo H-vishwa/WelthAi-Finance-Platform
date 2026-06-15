@@ -120,7 +120,7 @@ const AccountDrawer = ({ children }) => {
               <Input
                 id="balance"
                 type={"number"}
-                step="0.01"
+                step="1"
                 placeholder="e.g. 1000.00"
                 {...register("balance")}
               />
