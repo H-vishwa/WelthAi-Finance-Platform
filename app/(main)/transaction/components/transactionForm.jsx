@@ -130,7 +130,7 @@ const TransactionForm = ({
       {/* AI Receipt Scanner */}
       {!editMode && <ReceiptScanner onScanComplete={handleScanComplete} />}
 
-      <div className="rounded-2xl p-6 md:p-8 border border-blue-500/10 bg-[#0d1426]/70 backdrop-blur-xl shadow-[0_4px_40px_rgba(0,0,0,0.4)] hover:border-blue-500/20 transition-all duration-300">
+      <div className="rounded-2xl px-4 py-6 sm:p-6 md:p-8 border border-white/5 bg-neutral-900/40 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.55)] hover:border-white/15 transition-all duration-300">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-6 md:grid-cols-2">
             {/* Account */}
@@ -139,10 +139,10 @@ const TransactionForm = ({
               <Select
                 onValueChange={(value) => setValue("accountId", value)}
                 defaultValue={getValues("accountId")}>
-                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-white/20 text-white rounded-xl h-11 focus:ring-1 focus:ring-white/20 focus:border-white/20">
                   <SelectValue placeholder="Select Account" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                <SelectContent className="bg-[#121212] border border-white/10 text-slate-200">
                   {accounts.map((account) => (
                     <SelectItem
                       value={account.id}
@@ -171,10 +171,10 @@ const TransactionForm = ({
               <Select
                 onValueChange={(value) => setValue("type", value)}
                 defaultValue={type}>
-                <SelectTrigger className="w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                <SelectTrigger className="w-full bg-[#080d1a]/50 border-white/10 hover:border-white/20 text-white rounded-xl h-11 focus:ring-1 focus:ring-white/20 focus:border-white/20">
                   <SelectValue placeholder="Select Type" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                <SelectContent className="bg-[#121212] border border-white/10 text-slate-200">
                   <SelectItem value="INCOME" className="cursor-pointer text-emerald-400">Income</SelectItem>
                   <SelectItem value="EXPENSE" className="cursor-pointer text-rose-400">Expense</SelectItem>
                 </SelectContent>
@@ -194,7 +194,7 @@ const TransactionForm = ({
                 step="0.01"
                 min="0"
                 placeholder="0.00"
-                className="bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 pr-4"
+                className="bg-[#080d1a]/50 border-white/10 hover:border-white/20 text-white rounded-xl h-11 focus:ring-1 focus:ring-white/20 focus:border-white/20 pr-4"
                 {...register("amount")}
               />
               {errors.amount && (
@@ -208,10 +208,10 @@ const TransactionForm = ({
               <Select
                 onValueChange={(value) => setValue("category", value)}
                 defaultValue={getValues("category")}>
-                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-white/20 text-white rounded-xl h-11 focus:ring-1 focus:ring-white/20 focus:border-white/20">
                   <SelectValue placeholder="Select Category" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                <SelectContent className="bg-[#121212] border border-white/10 text-slate-200">
                   {filteredCategories.map((category) => (
                     <SelectItem
                       value={category.id}
@@ -235,12 +235,12 @@ const TransactionForm = ({
               <PopoverTrigger className="cursor-pointer" asChild>
                 <Button
                   variant="outline"
-                  className="w-full pl-3 text-left font-normal bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 hover:bg-[#080d1a]/80 text-slate-300 hover:text-white rounded-xl h-11">
+                  className="w-full pl-3 text-left font-normal bg-[#080d1a]/50 border-white/10 hover:border-white/20 hover:bg-[#080d1a]/80 text-slate-300 hover:text-white rounded-xl h-11">
                   {date ? format(date, "PPP") : <span className="text-slate-500">Pick a date</span>}
                   <CalendarIcon className="ml-auto w-4 h-4 opacity-50" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="bg-[#0d1426] border-white/10 p-0 rounded-xl" align="start">
+              <PopoverContent className="bg-[#121212] border border-white/10 p-0 rounded-xl" align="start">
                 <Calendar
                   className="cursor-pointer text-white"
                   mode="single"
@@ -263,7 +263,7 @@ const TransactionForm = ({
             <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Description</label>
             <Input 
               placeholder="Enter Description" 
-              className="bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              className="bg-[#080d1a]/50 border-white/10 hover:border-white/20 text-white rounded-xl h-11 focus:ring-1 focus:ring-white/20 focus:border-white/20"
               {...register("description")} 
             />
             {errors.description && (
@@ -272,7 +272,7 @@ const TransactionForm = ({
           </div>
 
           {/* Recurring Transaction Switch */}
-          <div className="flex items-center justify-between rounded-xl p-4 border border-blue-500/10 bg-blue-500/5">
+          <div className="flex items-center justify-between rounded-xl p-4 border border-purple-500/20 bg-purple-500/5 shadow-[0_0_15px_rgba(139,92,246,0.05)]">
             <div className="space-y-1">
               <label
                 htmlFor="isRecurring"
@@ -296,10 +296,10 @@ const TransactionForm = ({
               <Select
                 onValueChange={(value) => setValue("recurringInterval", value)}
                 defaultValue={getValues("recurringInterval")}>
-                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-blue-500/30 text-white rounded-xl h-11 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                <SelectTrigger className="cursor-pointer w-full bg-[#080d1a]/50 border-white/10 hover:border-white/20 text-white rounded-xl h-11 focus:ring-1 focus:ring-white/20 focus:border-white/20">
                   <SelectValue placeholder="Select Interval" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0d1426] border-white/10 text-slate-200">
+                <SelectContent className="bg-[#121212] border border-white/10 text-slate-200">
                   <SelectItem value="DAILY" className="cursor-pointer">Daily</SelectItem>
                   <SelectItem value="WEEKLY" className="cursor-pointer">Weekly</SelectItem>
                   <SelectItem value="MONTHLY" className="cursor-pointer">Monthly</SelectItem>
@@ -325,7 +325,7 @@ const TransactionForm = ({
             </Button>
             <Button
               type="submit"
-              className="cursor-pointer btn-shimmer gap-2 text-sm font-bold h-11 rounded-xl border-0 bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow-[0_0_20px_rgba(59,130,246,0.35)] hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] transition-all duration-300"
+              className="cursor-pointer btn-shimmer gap-2 text-sm font-bold h-11 rounded-xl border-0 bg-gradient-to-r from-purple-600 to-indigo-500 text-white shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_35px_rgba(139,92,246,0.55)] transition-all duration-300"
               disabled={transactionLoading}>
               {transactionLoading ? (
                 <>

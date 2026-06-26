@@ -208,19 +208,19 @@ const TransactionTable = ({ transactions }) => {
             className={"pl-8"}
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2 items-center">
           <Select
             value={typeFilter}
             onValueChange={(value) => {
               setTypeFilter(value);
               setCurrentPage(1);
             }}>
-            <SelectTrigger>
+            <SelectTrigger className="w-[120px] sm:w-[140px]">
               <SelectValue placeholder="All Types" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="INCOME">Income</SelectItem>
-              <SelectItem value="EXPENSE">Expense</SelectItem>
+            <SelectContent className="bg-[#121212] border-white/10 text-slate-200">
+              <SelectItem value="INCOME" className="cursor-pointer">Income</SelectItem>
+              <SelectItem value="EXPENSE" className="cursor-pointer">Expense</SelectItem>
             </SelectContent>
           </Select>
           <Select
@@ -229,20 +229,20 @@ const TransactionTable = ({ transactions }) => {
               setReccuringFilter(value);
               setCurrentPage(1);
             }}>
-            <SelectTrigger className={"w-[130px]"}>
+            <SelectTrigger className="w-[140px] sm:w-[160px]">
               <SelectValue placeholder="All Transactions" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="reccuring">Reccuring Only</SelectItem>
-              <SelectItem value="non-reccuring">Non-Reccuring Only</SelectItem>
+            <SelectContent className="bg-[#121212] border-white/10 text-slate-200">
+              <SelectItem value="reccuring" className="cursor-pointer">Reccuring Only</SelectItem>
+              <SelectItem value="non-reccuring" className="cursor-pointer">Non-Reccuring Only</SelectItem>
             </SelectContent>
           </Select>
           {selectedIds.length > 0 && (
-            <div className="flex items-center gap-2 ">
+            <div className="flex items-center gap-2">
               <Button
-                className={"cursor-pointer"}
-                variant={"destructive"}
-                size={"sm"}
+                className="cursor-pointer"
+                variant="destructive"
+                size="sm"
                 onClick={handleBulkDelete}>
                 <Trash className="mr-2 h-4 w-4" />
                 Delete Selected({selectedIds.length})
@@ -251,8 +251,8 @@ const TransactionTable = ({ transactions }) => {
           )}
           {(searchTerm || typeFilter || reccuringFilter) && (
             <Button
-              variant={"outline"}
-              size={"icon"}
+              variant="outline"
+              size="icon"
               onClick={handleClearFilters}
               title="Clear Filters">
               <X className="h-4 w-4" />
@@ -262,7 +262,7 @@ const TransactionTable = ({ transactions }) => {
       </div>
 
       {/* Transactions */}
-      <div className="rounded-md border">
+      <div className="w-full overflow-x-auto rounded-2xl border border-white/5 bg-neutral-900/20 backdrop-blur-xl">
         <Table>
           <TableHeader>
             <TableRow>
@@ -344,13 +344,22 @@ const TransactionTable = ({ transactions }) => {
                   </TableCell>
                   <TableCell>{transaction.description}</TableCell>
                   <TableCell className={"capitalize"}>
-                    <span
-                      style={{
-                        background: categoryColors[transaction.category],
-                      }}
-                      className="px-2 py-1 rounded text-white text-sm">
-                      {transaction.category}
-                    </span>
+                    {categoryColors[transaction.category] ? (
+                      <span
+                        style={{
+                          backgroundColor: `${categoryColors[transaction.category]}15`,
+                          borderColor: `${categoryColors[transaction.category]}33`,
+                          color: categoryColors[transaction.category],
+                        }}
+                        className="px-2.5 py-0.5 rounded-full text-xs font-semibold border backdrop-blur-md"
+                      >
+                        {transaction.category}
+                      </span>
+                    ) : (
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold border border-white/10 bg-white/5 text-slate-350">
+                        {transaction.category}
+                      </span>
+                    )}
                   </TableCell>
                   <TableCell
                     className="text-right font-medium"

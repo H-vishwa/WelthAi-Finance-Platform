@@ -31,7 +31,7 @@ async function DashboardPage() {
       {/* Overview */}
       <Suspense
         fallback={
-          <div className="rounded-2xl h-64 border border-blue-500/10 bg-[#0d1426]/70 animate-pulse" />
+          <div className="rounded-2xl h-64 border border-white/5 bg-neutral-900/30 backdrop-blur-xl animate-pulse" />
         }
       >
         <DashboardOverview accounts={accounts} transactions={transactions || []} />
@@ -45,13 +45,13 @@ async function DashboardPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* Add New Account Card */}
           <AccountDrawer>
-            <div className="rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group border border-dashed border-blue-500/15 bg-[#0d1426]/50 hover:border-blue-500/35 hover:bg-blue-500/5 transition-all duration-300 min-h-[180px]">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-blue-500/10 border border-blue-500/20 group-hover:scale-110 group-hover:bg-blue-500/15 transition-all duration-300">
-                <Plus size={22} className="text-blue-400" />
+            <div className="rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group border border-dashed border-white/10 bg-white/3 hover:border-white/25 hover:bg-white/5 transition-all duration-300 min-h-[180px]">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300">
+                <Plus size={22} className="text-white" />
               </div>
               <div className="text-center">
                 <p className="text-slate-300 font-medium text-sm">Add New Account</p>
-                <p className="text-slate-600 text-xs mt-0.5">Connect a bank or wallet</p>
+                <p className="text-slate-500 text-xs mt-0.5">Connect a bank or wallet</p>
               </div>
             </div>
           </AccountDrawer>

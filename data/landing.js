@@ -30,34 +30,34 @@ export const statsData = [
 // Features Data
 export const featuresData = [
   {
-    icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
+    icon: <BarChart3 className="h-8 w-8 text-blue-500" />,
     title: "Advanced Analytics",
     description:
       "Get detailed insights into your spending patterns with AI-powered analytics",
   },
   {
-    icon: <Receipt className="h-8 w-8 text-blue-600" />,
+    icon: <Receipt className="h-8 w-8 text-blue-500" />,
     title: "Smart Receipt Scanner",
     description:
       "Extract data automatically from receipts using advanced AI technology",
   },
   {
-    icon: <PieChart className="h-8 w-8 text-blue-600" />,
+    icon: <PieChart className="h-8 w-8 text-blue-500" />,
     title: "Budget Planning",
     description: "Create and manage budgets with intelligent recommendations",
   },
   {
-    icon: <CreditCard className="h-8 w-8 text-blue-600" />,
+    icon: <CreditCard className="h-8 w-8 text-blue-500" />,
     title: "Multi-Account Support",
     description: "Manage multiple accounts and credit cards in one place",
   },
   {
-    icon: <Globe className="h-8 w-8 text-blue-600" />,
+    icon: <Globe className="h-8 w-8 text-blue-500" />,
     title: "Multi-Currency",
     description: "Support for multiple currencies with real-time conversion",
   },
   {
-    icon: <Zap className="h-8 w-8 text-blue-600" />,
+    icon: <Zap className="h-8 w-8 text-blue-500" />,
     title: "Automated Insights",
     description: "Get automated financial insights and recommendations",
   },
@@ -66,95 +66,108 @@ export const featuresData = [
 // How It Works Data
 export const howItWorksData = [
   {
-    icon: <CreditCard className="h-8 w-8 text-blue-600" />,
+    icon: <CreditCard className="h-8 w-8 text-blue-500" />,
     title: "1. Create Your Account",
     description:
       "Get started in minutes with our simple and secure sign-up process",
   },
   {
-    icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
+    icon: <BarChart3 className="h-8 w-8 text-blue-500" />,
     title: "2. Track Your Spending",
     description:
       "Automatically categorize and track your transactions in real-time",
   },
   {
-    icon: <PieChart className="h-8 w-8 text-blue-600" />,
+    icon: <PieChart className="h-8 w-8 text-blue-500" />,
     title: "3. Get Insights",
     description:
       "Receive AI-powered insights and recommendations to optimize your finances",
   },
 ];
 
-// Testimonials Data
-export const  testimonialsData = [
+// Pricing Plans Data in Indian Rupees (₹)
+export const pricingPlans = [
   {
-    name: "Sarah Johnson",
-    role: "Small Business Owner",
-    image: "https://randomuser.me/api/portraits/women/75.jpg",
-    quote:
-      "Welth has transformed how I manage my business finances. The AI insights have helped me identify cost-saving opportunities I never knew existed.",
+    name: "Basic",
+    price: "999",
+    period: "month",
+    description: "Essential financial tracking and AI budget recommendations for individuals.",
+    buttonText: "Get Started",
+    features: [
+      "Track up to 5 accounts or cards",
+      "Basic AI budget recommendations",
+      "Smart receipt scanning (50/month)",
+      "Standard financial analytics & reports",
+      "Email support",
+      "Real-time transaction sync"
+    ],
+    subtext: "1500+ users trusted free"
   },
   {
-    name: "Michael Chen",
-    role: "Freelancer",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
-    quote:
-      "The receipt scanning feature saves me hours each month. Now I can focus on my work instead of manual data entry and expense tracking.",
+    name: "Standard",
+    price: "2,499",
+    period: "month",
+    description: "Complete expense management and advanced AI analytics for growing teams.",
+    buttonText: "Get Started",
+    isPopular: true,
+    features: [
+      "Everything in Basic",
+      "Unlimited accounts & cards tracking",
+      "Advanced AI budget optimization",
+      "Unlimited receipt scanning",
+      "Multi-currency support & conversion",
+      "24/7 chat support & insights"
+    ],
+    subtext: "750+ growing businesses"
   },
   {
-    name: "Emily Rodriguez",
-    role: "Financial Advisor",
-    image: "https://randomuser.me/api/portraits/women/74.jpg",
-    quote:
-      "I recommend Welth to all my clients. The multi-currency support and detailed analytics make it perfect for international investors.",
+    name: "Enterprise",
+    price: "Custom",
+    period: "custom",
+    description: "Bespoke financial solutions, custom AI agents, and corporate consolidation.",
+    buttonText: "Contact Sales",
+    features: [
+      "Bespoke-grade AI auditing agent",
+      "Full developer API access",
+      "Multi-entity & corporate consolidation",
+      "Dedicated advisor & support manager"
+    ],
+    subtext: "250+ global enterprises"
+  }
+];
+
+// FAQ Data referencing WELTH
+export const faqData = [
+  {
+    question: "What is WELTH?",
+    answer: "WELTH is a state-of-the-art AI-powered platform designed to automate and optimize financial management. It uses intelligent agents to track, analyze, and forecast your finances."
   },
   {
-    name: "David Patel",
-    role: "Startup Founder",
-    image: "https://randomuser.me/api/portraits/men/70.jpg",
-    quote:
-      "As a founder, I need real-time insights into cash flow. Welth gives me exactly that — clear data, automated reports, and peace of mind.",
+    question: "How are AI Agents different from automation tools?",
+    answer: "Unlike static rule-based automation tools, AI Agents learn from your behavior, adapt to new transaction patterns, make intelligent budgeting suggestions, and proactively flag anomalies."
   },
   {
-    name: "Olivia Brown",
-    role: "E-commerce Manager",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
-    quote:
-      "Our online store finances used to be a mess. Welth’s smart dashboards helped us track revenue, taxes, and expenses effortlessly.",
+    question: "Can WELTH integrate with existing systems?",
+    answer: "Yes, WELTH integrates seamlessly with bank accounts, credit cards, invoicing software, and developer APIs to consolidate your financial data in real time."
   },
   {
-    name: "Rajesh Kumar",
-    role: "Software Engineer",
-    image: "https://randomuser.me/api/portraits/men/77.jpg",
-    quote:
-      "I’ve tried several finance apps, but none come close to Welth. The AI-driven insights and intuitive interface are just outstanding.",
+    question: "Is WELTH secure for enterprise use?",
+    answer: "Security is our core priority. We use industry-standard encryption, comply with global data regulations, and support secure MFA verification."
   },
   {
-    name: "Laura Nguyen",
-    role: "Digital Marketer",
-    image: "https://randomuser.me/api/portraits/women/67.jpg",
-    quote:
-      "Welth made it easy to manage my freelance income from multiple clients. The budgeting tools are incredibly accurate and easy to use.",
+    question: "How quickly can WELTH be implemented?",
+    answer: "Setup takes under two minutes. Bank feeds, categorization models, and real-time visualization dashboards are generated instantly on integration."
   },
   {
-    name: "Carlos Mendes",
-    role: "Investor",
-    image: "https://randomuser.me/api/portraits/men/79.jpg",
-    quote:
-      "The analytics and AI projections on Welth are top-notch. It helps me make smarter investment decisions based on real data trends.",
+    question: "Can AI Agents replace human financial advisors?",
+    answer: "No. Our AI agents automate execution and heavy analytical computation, giving you and your advisor better data to make informed strategic decisions."
   },
   {
-    name: "Amira Hassan",
-    role: "Consultant",
-    image: "https://randomuser.me/api/portraits/women/72.jpg",
-    quote:
-      "Managing multiple client accounts used to take hours. With Welth, I handle everything in minutes — it’s a game changer for consultants.",
+    question: "How does WELTH improve daily workflows?",
+    answer: "By automating manual data entry, processing invoices, reading receipts, and alerting you dynamically to critical cash flow changes."
   },
   {
-    name: "Liam O'Connor",
-    role: "Project Manager",
-    image: "https://randomuser.me/api/portraits/men/80.jpg",
-    quote:
-      "Welth’s automation features save me and my team from repetitive financial tasks. It’s like having a personal finance assistant.",
-  },
+    question: "Is WELTH scaleable for global operations?",
+    answer: "Yes. WELTH natively supports multi-currency transactions, automatic tax structures, and multi-entity account consolidation."
+  }
 ];

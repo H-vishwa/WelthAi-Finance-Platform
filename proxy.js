@@ -6,12 +6,14 @@ const isProtectedRoute = createRouteMatcher([
   "/transaction(.*)",
 ]);
 
-export default clerkMiddleware(async (auth, req) => {
+export const proxy = clerkMiddleware(async (auth, req) => {
   const { userId, redirectToSignIn } = await auth();
   if (!userId && isProtectedRoute(req)) {
     return redirectToSignIn();
   }
 });
+
+export default proxy;
 
 export const config = {
   matcher: [

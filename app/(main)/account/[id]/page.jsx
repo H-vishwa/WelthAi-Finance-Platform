@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import TransactionTable from "../components/transactionTable";
 import AccountChart from "../components/AccountChart";
-import { CreditCard } from "lucide-react";
+import { CreditCard, ChevronLeft } from "lucide-react";
+import Link from "next/link";
 
 const AccountsPage = async ({ params }) => {
   const { id } = await params;
@@ -14,12 +15,23 @@ const AccountsPage = async ({ params }) => {
   const { transactions, ...account } = accountData;
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-6 pb-12">
+      {/* Back Navigation */}
+      <div>
+        <Link
+          href="/dashboard"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-white transition-colors duration-200"
+        >
+          <ChevronLeft size={14} />
+          Back to Dashboard
+        </Link>
+      </div>
+
       {/* Page Header */}
-      <div className="flex gap-4 items-end justify-between pt-4">
+      <div className="flex flex-col sm:flex-row gap-4 sm:items-end justify-between pt-4">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-cyan-500/15 border border-blue-500/25">
-            <CreditCard size={24} className="text-blue-400" />
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 shrink-0">
+            <CreditCard size={24} className="text-white" />
           </div>
           <div>
             <h1 className="text-4xl md:text-5xl font-black capitalize gradient-title">
@@ -32,7 +44,7 @@ const AccountsPage = async ({ params }) => {
         </div>
 
         {/* Balance box */}
-        <div className="text-right rounded-2xl px-6 py-4 border border-blue-500/10 bg-[#0d1426]/70 backdrop-blur-xl">
+        <div className="text-left sm:text-right rounded-2xl px-6 py-4 border border-white/5 bg-neutral-900/40 backdrop-blur-xl">
           <div className="text-2xl md:text-3xl font-black text-white">
             ₹{parseFloat(account.balance).toLocaleString("en-IN", {
               minimumFractionDigits: 2,
@@ -47,14 +59,14 @@ const AccountsPage = async ({ params }) => {
 
       {/* Chart */}
       <Suspense
-        fallback={<div className="rounded-2xl h-64 border border-blue-500/10 bg-[#0d1426]/70 animate-pulse" />}
+        fallback={<div className="rounded-2xl h-64 border border-white/5 bg-neutral-900/30 backdrop-blur-xl animate-pulse" />}
       >
         <AccountChart transactions={transactions} />
       </Suspense>
 
       {/* Table */}
       <Suspense
-        fallback={<div className="rounded-2xl h-96 border border-blue-500/10 bg-[#0d1426]/70 animate-pulse" />}
+        fallback={<div className="rounded-2xl h-96 border border-white/5 bg-neutral-900/30 backdrop-blur-xl animate-pulse" />}
       >
         <TransactionTable transactions={transactions} />
       </Suspense>

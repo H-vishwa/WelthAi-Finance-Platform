@@ -60,13 +60,13 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
     : 0;
 
   return (
-    <div className="rounded-2xl p-6 border border-blue-500/10 bg-[#0d1426]/70 backdrop-blur-xl shadow-[0_4px_40px_rgba(0,0,0,0.4)] hover:border-blue-500/25 transition-all duration-300">
+    <div className="rounded-2xl p-6 border border-white/5 bg-neutral-900/40 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.55)] hover:border-white/20 transition-all duration-300">
 
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-cyan-500/15 border border-blue-500/20">
-            <Target size={18} className="text-blue-400" />
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 border border-white/10">
+            <Target size={18} className="text-white" />
           </div>
           <div>
             <div className="text-white font-semibold text-sm">Monthly Budget</div>
@@ -88,7 +88,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
               type="number"
               value={newBudget}
               onChange={(e) => setnewBudget(e.target.value)}
-              className="w-40 text-white bg-white/5 border-blue-500/30 focus:border-blue-400"
+              className="w-40 text-white bg-white/5 border-white/10 focus:border-white/20"
               placeholder="Enter budget"
               autoFocus
               disabled={isLoading}
@@ -144,7 +144,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
 
       {!initialBudget && (
         <Button variant="ghost" size="sm" onClick={() => setIsEditing(true)}
-                className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 text-xs cursor-pointer p-0 mt-1">
+                className="text-white hover:text-white hover:bg-white/10 bg-white/5 px-4 py-2 rounded-xl transition-all duration-300 text-xs cursor-pointer mt-1">
           + Set a budget
         </Button>
       )}

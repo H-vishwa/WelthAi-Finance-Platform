@@ -48,7 +48,7 @@ const ReceiptScanner = ({ onScanComplete }) => {
 
       <Button
         type="button"
-        className="w-full h-11 cursor-pointer btn-shimmer gap-2 text-sm font-semibold rounded-xl border-0 bg-gradient-to-r from-teal-500 to-emerald-400 text-white shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_35px_rgba(20,184,166,0.5)] transition-all duration-300"
+        className="w-full h-11 cursor-pointer btn-shimmer gap-2 text-sm font-semibold rounded-xl border-0 bg-gradient-to-r from-purple-600 to-indigo-500 text-white shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_35px_rgba(139,92,246,0.5)] transition-all duration-300"
         onClick={() => fileInputRef.current?.click()}
         disabled={scanReceiptLoading}>
         {scanReceiptLoading ? (
